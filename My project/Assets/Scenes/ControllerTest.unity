@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 472103227}
   - component: {fileID: 472103231}
   - component: {fileID: 472103232}
+  - component: {fileID: 472103233}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -158,12 +159,12 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 10
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!212 &472103228
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -205,12 +206,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8b7445ac519aa2840b445929f5f1a90c, type: 3}
   m_Color: {r: 0.13656995, g: 0.9339623, b: 0.22787008, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.56, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -243,8 +244,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcd7458b1a9850746808344ba9da59cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
-  col: {fileID: 0}
+  platformLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  rb: {fileID: 472103227}
+  col: {fileID: 472103232}
+  animator: {fileID: 472103233}
 --- !u!61 &472103232
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -262,8 +267,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 2.56, y: 2.56}
+    newSize: {x: 2.56, y: 2.56}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -271,6 +276,26 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!95 &472103233
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472103226}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ade0dfb59b38b914db11cb9accbb4052, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &928249030
 GameObject:
   m_ObjectHideFlags: 0
@@ -459,7 +484,7 @@ GameObject:
   - component: {fileID: 1810206589}
   - component: {fileID: 1810206588}
   - component: {fileID: 1810206587}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}

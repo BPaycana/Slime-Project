@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    private bool canJump = false;
 
     void Awake()
     {
@@ -36,21 +37,30 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown (0) && controller.rb.velocity.magnitude == 0)
+        if (Input.GetMouseButtonDown (0) && canJump == true)
         {
             isDragging = true;
             OnDragStart();
         }
 
-        if (Input.GetMouseButtonUp (0) && controller.rb.velocity.magnitude == 0)
+        if (Input.GetMouseButtonUp (0)  && canJump == true)
         {
             isDragging = false;
             OnDragEnd();
+
+            canJump = false;
+
+
         }
 
-        if (isDragging && controller.rb.velocity.magnitude == 0)
+        if (isDragging)
         {
             OnDrag();
+        }
+
+        if (controller.rb.velocity.magnitude == 0 && Input.GetMouseButton (0) == false)
+        {
+            canJump = true;
         }
     }
 
@@ -64,16 +74,20 @@ public class GameManager : MonoBehaviour
 
     void OnDrag()
     {
+        controller.animator.SetBool("isCharging", true);
+
         endPoint = cam.ScreenToWorldPoint (Input.mousePosition);
         distance = Vector2.Distance (startPoint, endPoint);
         direction = (startPoint - endPoint).normalized;
-        force = direction * distance * pushForce;
+        force = Vector2.ClampMagnitude((direction * distance * pushForce * 2), 40);
 
         trajectory.UpdateDots(controller.pos, force);
     }
 
     void OnDragEnd()
     {
+        controller.animator.SetBool("isCharging", false);
+
         controller.ActivateRb();
         controller.Push (force);
 
