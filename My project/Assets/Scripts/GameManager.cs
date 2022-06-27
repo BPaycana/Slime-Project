@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         cam = Camera.main;
-        controller.DeactivateRb();
+        //controller.DeactivateRb();
     }
 
     void Update()
@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
 
     void OnDragStart()
     {
-        controller.DeactivateRb();
+        //controller.DeactivateRb();
         startPoint = cam.ScreenToWorldPoint (Input.mousePosition);
 
         trajectory.Show();
