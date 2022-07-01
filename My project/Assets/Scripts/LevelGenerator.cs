@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
 {
-    [SerializeField] private Transform Level1;
-    [SerializeField] private Transform Level2;
     [SerializeField] private Transform Grid;
     public Transform[] levels;
 
