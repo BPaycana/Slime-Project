@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
 {
-    
-    [SerializeField] private Transform Tilemap;
+    [SerializeField] private Transform Level1;
+    [SerializeField] private Transform Level2;
     [SerializeField] private Transform Grid;
+    public Transform[] levels;
 
-    // private int y = 0;
-    // private float currentTime = 0f;
-    // private float startingTime = 1f;
+    public float spawnTime = 2f;
     
     void Start()
     {
@@ -20,14 +19,7 @@ public class LevelGenerator : MonoBehaviour
 
     void Update()
     {
-        // currentTime -= 1 * Time.deltaTime;
 
-        // if (currentTime <= 0)
-        // {
-        //     y += 10;
-        //     Instantiate(Tilemap, new Vector3(0, y), Quaternion.identity, Grid);
-        //     currentTime = startingTime;
-        // }
     }
 
     IEnumerator SpawnLevel()
@@ -36,9 +28,10 @@ public class LevelGenerator : MonoBehaviour
 
         while(true)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(spawnTime);
             y += 10;
-            Instantiate(Tilemap, new Vector3(0, y), Quaternion.identity, Grid);
+            int randomLevel = Random.Range(0, levels.Length);
+            Instantiate(levels[randomLevel], new Vector3(0, y), Quaternion.identity, Grid);
         }
     }
 }
