@@ -8,9 +8,10 @@ public class LevelGenerator : MonoBehaviour
     public Transform[] levels;
 
     public float spawnTime = 2f;
-    
+    private int randomLevel = 0;
     void Start()
     {
+        Instantiate(levels[randomLevel], new Vector3(0, 0), Quaternion.identity, Grid);
         StartCoroutine(SpawnLevel());
         // currentTime = startingTime;
     }
@@ -28,7 +29,17 @@ public class LevelGenerator : MonoBehaviour
         {
             yield return new WaitForSeconds(spawnTime);
             y += 10;
-            int randomLevel = Random.Range(0, levels.Length);
+
+            if (randomLevel >= levels.Length / 2)
+            {
+                randomLevel = Random.Range(0, levels.Length / 2);
+            }
+
+            else
+            {
+                randomLevel = Random.Range(levels.Length / 2, levels.Length);
+            } 
+            Debug.Log(randomLevel);
             Instantiate(levels[randomLevel], new Vector3(0, y), Quaternion.identity, Grid);
         }
     }
