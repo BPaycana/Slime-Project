@@ -28,7 +28,7 @@ public class LevelGenerator : MonoBehaviour
         while(true)
         {
             yield return new WaitForSeconds(spawnTime);
-            y += 10;
+            y += 12;
 
             if (randomLevel >= levels.Length / 2)
             {
