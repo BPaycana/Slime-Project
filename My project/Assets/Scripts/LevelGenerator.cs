@@ -39,7 +39,6 @@ public class LevelGenerator : MonoBehaviour
             {
                 randomLevel = Random.Range(levels.Length / 2, levels.Length);
             } 
-            Debug.Log(randomLevel);
             Instantiate(levels[randomLevel], new Vector3(0, y), Quaternion.identity, Grid);
         }
     }
