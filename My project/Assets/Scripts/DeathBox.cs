@@ -25,7 +25,7 @@ public class DeathBox : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(timer);
-            speed += 2.0f;
+            speed += 1.0f;
             Debug.Log(speed);
         }
         
@@ -44,7 +44,11 @@ public class DeathBox : MonoBehaviour
                 tilemap.SetTile(tilemap.WorldToCell(hitPosition), null);
             }
         }
-        
+
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Time.timeScale = 0;
+        }
         Debug.Log("You Are Dead!");
     }
 }
