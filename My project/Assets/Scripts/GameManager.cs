@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour
         endPoint = cam.ScreenToWorldPoint (Input.mousePosition);
         distance = Vector2.Distance (startPoint, endPoint);
         direction = (startPoint - endPoint).normalized;
-        force = Vector2.ClampMagnitude((direction * distance * pushForce * 2), 40);
+        force = Vector2.ClampMagnitude((direction * distance * pushForce * 5), 40);
 
         trajectory.UpdateDots(controller.pos, force);
     }

@@ -7,7 +7,7 @@ public class Controller : MonoBehaviour
 
     [SerializeField] private LayerMask platformLayerMask;
     public Rigidbody2D rb;
-    public BoxCollider2D col;
+    public CircleCollider2D col;
     public Animator animator;
     public Vector3 pos
     {
@@ -19,7 +19,7 @@ public class Controller : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D> ();
-        col = GetComponent<BoxCollider2D> ();
+        col = GetComponent<CircleCollider2D> ();
     }
 
     public void Push(Vector2 force)
@@ -43,19 +43,19 @@ public class Controller : MonoBehaviour
     {
         float extra = 0.1f;
         RaycastHit2D raycastHit = Physics2D.BoxCast(col.bounds.center, col.bounds.size, 0f, Vector2.down, extra, platformLayerMask);
-        // Color rayColor;
+        Color rayColor;
 
-        // if (raycastHit.collider != null)
-        // {
-        //     rayColor = Color.green;
-        // }
-        // else
-        // {
-        //     rayColor = Color.red;
-        // }
-        // Debug.DrawRay(col.bounds.center + new Vector3(col.bounds.extents.x, 0), Vector2.down * (col.bounds.extents.y + extra), rayColor);
-        // Debug.DrawRay(col.bounds.center - new Vector3(col.bounds.extents.x, 0), Vector2.down * (col.bounds.extents.y + extra), rayColor);
-        // Debug.Log(raycastHit.collider);
+        if (raycastHit.collider != null)
+        {
+            rayColor = Color.green;
+        }
+        else
+        {
+            rayColor = Color.red;
+        }
+        Debug.DrawRay(col.bounds.center + new Vector3(col.bounds.extents.x, 0), Vector2.down * (col.bounds.extents.y + extra), rayColor);
+        Debug.DrawRay(col.bounds.center - new Vector3(col.bounds.extents.x, 0), Vector2.down * (col.bounds.extents.y + extra), rayColor);
+        Debug.Log(raycastHit.collider);
         return raycastHit.collider != null;
     }
 
@@ -70,6 +70,8 @@ public class Controller : MonoBehaviour
         {
             animator.SetBool("isGrounded", true);
         }
+
+        animator.SetFloat("Speed", rb.velocity.magnitude);
         // float dirX = Input.GetAxis("Horizontal");
         
         // rb.velocity = new Vector2(dirX * 7f, rb.velocity.y);

@@ -16,7 +16,7 @@ public class DeathBox : MonoBehaviour
 
     void Update()
     {
-        var step = speed * Time.deltaTime;
+        var step = (speed * Time.deltaTime);
         transform.position = Vector3.MoveTowards(transform.position, new Vector3(0, player.transform.position.y, player.transform.position.z), step);
     }
 
@@ -25,7 +25,7 @@ public class DeathBox : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(timer);
-            speed += 1.0f;
+            speed += 0.5f;
             Debug.Log(speed);
         }
         
@@ -48,7 +48,8 @@ public class DeathBox : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Time.timeScale = 0;
+            Debug.Log("You Are Dead!");
         }
-        Debug.Log("You Are Dead!");
+        
     }
 }
