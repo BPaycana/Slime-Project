@@ -43,19 +43,21 @@ public class Controller : MonoBehaviour
     {
         float extra = 0.1f;
         RaycastHit2D raycastHit = Physics2D.BoxCast(col.bounds.center, col.bounds.size, 0f, Vector2.down, extra, platformLayerMask);
-        Color rayColor;
 
-        if (raycastHit.collider != null)
-        {
-            rayColor = Color.green;
-        }
-        else
-        {
-            rayColor = Color.red;
-        }
-        Debug.DrawRay(col.bounds.center + new Vector3(col.bounds.extents.x, 0), Vector2.down * (col.bounds.extents.y + extra), rayColor);
-        Debug.DrawRay(col.bounds.center - new Vector3(col.bounds.extents.x, 0), Vector2.down * (col.bounds.extents.y + extra), rayColor);
-        Debug.Log(raycastHit.collider);
+        // Color rayColor;
+
+        // if (raycastHit.collider != null)
+        // {
+        //     rayColor = Color.green;
+        // }
+        // else
+        // {
+        //     rayColor = Color.red;
+        // }
+        // Debug.DrawRay(col.bounds.center + new Vector3(col.bounds.extents.x, 0), Vector2.down * (col.bounds.extents.y + extra), rayColor);
+        // Debug.DrawRay(col.bounds.center - new Vector3(col.bounds.extents.x, 0), Vector2.down * (col.bounds.extents.y + extra), rayColor);
+        // Debug.Log(raycastHit.collider);
+
         return raycastHit.collider != null;
     }
 
