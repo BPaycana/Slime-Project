@@ -9,6 +9,7 @@ public class Controller : MonoBehaviour
     public Rigidbody2D rb;
     public CircleCollider2D col;
     public Animator animator;
+    public bool isMenu;
     public Vector3 pos
     {
         get
@@ -20,6 +21,11 @@ public class Controller : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D> ();
         col = GetComponent<CircleCollider2D> ();
+
+        if(isMenu == true)
+        {
+            animator.SetBool("isMenu", true);
+        }
     }
 
     public void Push(Vector2 force)
@@ -70,7 +76,7 @@ public class Controller : MonoBehaviour
 
         else
         {
-            animator.SetBool("isGrounded", true);
+            animator.SetBool("isGrounded", true);         
         }
 
         animator.SetFloat("Speed", rb.velocity.magnitude);
