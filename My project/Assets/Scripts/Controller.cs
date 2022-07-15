@@ -21,11 +21,6 @@ public class Controller : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D> ();
         col = GetComponent<CircleCollider2D> ();
-
-        if(isMenu == true)
-        {
-            animator.SetBool("isMenu", true);
-        }
     }
 
     public void Push(Vector2 force)
