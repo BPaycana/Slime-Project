@@ -62,6 +62,12 @@ public class Controller : MonoBehaviour
         return raycastHit.collider != null;
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    { 
+        FindObjectOfType<AudioManager>().Play("Splat" + Random.Range(1,4));
+        // Debug.Log("Collided!");
+    }
+
     void Update()
     {
         if (IsGrounded() == false)
@@ -71,7 +77,7 @@ public class Controller : MonoBehaviour
 
         else
         {
-            animator.SetBool("isGrounded", true);         
+            animator.SetBool("isGrounded", true);
         }
 
         animator.SetFloat("Speed", rb.velocity.magnitude);

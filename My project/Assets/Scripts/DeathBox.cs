@@ -5,19 +5,30 @@ using UnityEngine.Tilemaps;
 
 public class DeathBox : MonoBehaviour
 {
-    public float speed = 2.0f;
-    public float timer = 5.0f;
+    [SerializeField] private UIManager UIManager;
+    
+    public float speed;
+    public float timer;
+    public float speedIncrease;
+    public float speedCap;
     public Controller player;
+
+    Coroutine lastRoutine = null;
 
     void Start()
     {
-        StartCoroutine(SpeedUp());
+       lastRoutine = StartCoroutine(SpeedUp());
     }
 
     void Update()
     {
         var step = (speed * Time.deltaTime);
         transform.position = Vector3.MoveTowards(transform.position, new Vector3(0, player.transform.position.y, player.transform.position.z), step);
+
+        if (speed >= speedCap)
+        {
+            StopCoroutine(lastRoutine);
+        }
     }
 
     IEnumerator SpeedUp()
@@ -25,7 +36,14 @@ public class DeathBox : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(timer);
-            speed += 0.5f;
+
+            if (speed >= speedCap)
+            {
+                StopCoroutine(lastRoutine);
+            }
+
+            speed += speedIncrease;
+
             Debug.Log(speed);
         }
         
@@ -48,6 +66,7 @@ public class DeathBox : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Time.timeScale = 0;
+            UIManager.GameOver();
             Debug.Log("You Are Dead!");
         }
         
