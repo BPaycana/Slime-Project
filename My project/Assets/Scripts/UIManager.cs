@@ -21,6 +21,7 @@ public class UIManager : MonoBehaviour
     }
     
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI highScore;
 
     private int height;
     private int score = 0;
@@ -29,6 +30,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
+        highScore.text = PlayerPrefs.GetInt("HighScore", 0).ToString();
     }
 
     // Update is called once per frame
@@ -40,12 +42,33 @@ public class UIManager : MonoBehaviour
         {
             score = height;
         }
-
         scoreText.text = "Height: " + score + "m";
+
+    }
+
+    public void PlayGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    public void MainMenu()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 
     public void GameOver()
     {
+        if (score > PlayerPrefs.GetInt("HighScore", 0))
+        {
+            PlayerPrefs.SetInt("HighScore", score);
+        }
+        highScore.text = "High Score: " + PlayerPrefs.GetInt("HighScore", 0).ToString() + "m";
         gameOverPanel.SetActive(true);
     }
 
