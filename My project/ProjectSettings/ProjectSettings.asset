@@ -756,11 +756,11 @@ PlayerSettings:
     m_VersionName: 
   apiCompatibilityLevel: 6
   activeInputHandler: 0
-  cloudProjectId: 
+  cloudProjectId: a3a9a42c-9e3d-4fcf-9c4f-c3ccecaa9a22
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: My project
+  organizationId: nohrx34
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 
