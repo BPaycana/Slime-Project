@@ -6,6 +6,7 @@ public class Controller : MonoBehaviour
 {
 
     [SerializeField] private LayerMask platformLayerMask;
+    public ParticleSystem dust;
     public Rigidbody2D rb;
     public CircleCollider2D col;
     public Animator animator;
@@ -62,9 +63,14 @@ public class Controller : MonoBehaviour
         return raycastHit.collider != null;
     }
 
+    void CreateDust(){
+        dust.Play();
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     { 
         FindObjectOfType<AudioManager>().Play("Splat" + Random.Range(1,4));
+        CreateDust();
         // Debug.Log("Collided!");
     }
 
