@@ -12,20 +12,21 @@ public class Trajectory : MonoBehaviour
 	[SerializeField] [Range (0.3f, 1f)] float dotMaxScale;
 
 	Transform[] dotsList;
-
+	
+	//Dot position
 	Vector2 pos;
-	//dot pos
+
 	float timeStamp;
 
-	//--------------------------------
 	void Start ()
 	{
-		//hide trajectory in the start
+		//Hide trajectory in the start
 		Hide ();
-		//prepare dots
+		//Prepare dots
 		PrepareDots ();
 	}
 
+	//Instatiates the dots on the screen.
 	void PrepareDots ()
 	{
 		dotsList = new Transform[dotsNumber];
@@ -44,6 +45,7 @@ public class Trajectory : MonoBehaviour
 		}
 	}
 
+	//Updates the dots position on screen depending on player mouse position.
 	public void UpdateDots (Vector3 ballPos, Vector2 forceApplied)
 	{
 		timeStamp = dotSpacing;

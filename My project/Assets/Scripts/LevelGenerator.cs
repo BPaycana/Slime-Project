@@ -11,7 +11,10 @@ public class LevelGenerator : MonoBehaviour
     private int randomLevel = 0;
     void Start()
     {
+        //Instatiates the first static level
         Instantiate(levels[randomLevel], new Vector3(0, 0), Quaternion.identity, Grid);
+
+        //Begins the coroutine to start spawning levels
         StartCoroutine(SpawnLevel());
         // currentTime = startingTime;
     }
@@ -30,6 +33,8 @@ public class LevelGenerator : MonoBehaviour
             yield return new WaitForSeconds(spawnTime);
             y += 12;
 
+
+            //Alternates between even and odd levels to make sure the player isn't stuck.
             if (randomLevel >= levels.Length / 2)
             {
                 randomLevel = Random.Range(0, levels.Length / 2);

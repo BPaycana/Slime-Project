@@ -13,7 +13,7 @@ public class AudioManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        
+        //Make sure theres only one instance of the audio manager
         if (instance == null)
             instance = this;
 
@@ -25,6 +25,7 @@ public class AudioManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
 
+        //Gives each sfx toggleable settings
         foreach (Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
@@ -39,6 +40,7 @@ public class AudioManager : MonoBehaviour
     // Update is called once per frame
     public void Play (string name)
     {
+        //Loops through the sfx in the array
         Sound s = Array.Find(sounds, sound => sound.name == name);
         if (s == null)
         {

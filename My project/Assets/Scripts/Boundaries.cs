@@ -10,7 +10,7 @@ public class Boundaries : MonoBehaviour
     private float objectHeight;
     public float extraSpace;
 
-    // Start is called before the first frame update
+    // Figures out the screen boundaries in the start.
     void Start()
     {
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
@@ -18,7 +18,7 @@ public class Boundaries : MonoBehaviour
         objectHeight = transform.GetComponent<SpriteRenderer>().bounds.extents.y;
     }
 
-    // Update is called once per frame
+    // Make sure that the view and the player is clampped to the boundaries during play
     void Update()
     {
         Vector3 viewPos = transform.position;

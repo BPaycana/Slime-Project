@@ -20,6 +20,7 @@ public class DeathBox : MonoBehaviour
        lastRoutine = StartCoroutine(SpeedUp());
     }
 
+    //Updates the deathbox's position.
     void Update()
     {
         var step = (speed * Time.deltaTime);
@@ -31,6 +32,7 @@ public class DeathBox : MonoBehaviour
         }
     }
 
+    //Lets it speed up over time.
     IEnumerator SpeedUp()
     {
         while (true)
@@ -49,8 +51,11 @@ public class DeathBox : MonoBehaviour
         
     }
 
+    //Code that plays on collision.
     private void OnCollisionEnter2D(Collision2D collision)
-    {
+    {   
+
+        //Checks to see the other objects tag and hit position and deletes it if its a platform.
         if (collision.gameObject.CompareTag("Platform"))
         {
             Tilemap tilemap = collision.gameObject.GetComponent<Tilemap>();
@@ -63,6 +68,7 @@ public class DeathBox : MonoBehaviour
             }
         }
 
+        //Checks to see if its a player and plays the game over screen if it is.
         if (collision.gameObject.CompareTag("Player"))
         {
             Time.timeScale = 0;

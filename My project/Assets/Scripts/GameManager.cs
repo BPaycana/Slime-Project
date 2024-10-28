@@ -74,8 +74,10 @@ public class GameManager : MonoBehaviour
 
     void OnDrag()
     {
+        //Starts playing appropriate animation.
         controller.animator.SetBool("isCharging", true);
 
+        //Calculates where the player is dragging and adjust direction and force.
         endPoint = cam.ScreenToWorldPoint (Input.mousePosition);
         distance = Vector2.Distance (startPoint, endPoint);
         direction = (startPoint - endPoint).normalized;
@@ -86,8 +88,10 @@ public class GameManager : MonoBehaviour
 
     void OnDragEnd()
     {
+        //Starts playing appropriate animation.
         controller.animator.SetBool("isCharging", false);
 
+        //Applies the force to make the character move.
         controller.ActivateRb();
         controller.Push (force);
 

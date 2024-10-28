@@ -18,6 +18,7 @@ public class Controller : MonoBehaviour
             return transform.position;
         }
     }
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D> ();
@@ -41,6 +42,7 @@ public class Controller : MonoBehaviour
         rb.isKinematic = true;
     }
 
+    //Checks to see if player is grounded.
     private bool IsGrounded()
     {
         float extra = 0.1f;
@@ -67,6 +69,8 @@ public class Controller : MonoBehaviour
         dust.Play();
     }
 
+
+    //Code that plays when player collides with something.
     private void OnCollisionEnter2D(Collision2D collision)
     { 
         FindObjectOfType<AudioManager>().Play("Splat" + Random.Range(1,4));
@@ -76,6 +80,8 @@ public class Controller : MonoBehaviour
 
     void Update()
     {
+
+        //Various checks to the player to play appropriate animation.
         if (IsGrounded() == false)
         {
             animator.SetBool("isGrounded", false);
